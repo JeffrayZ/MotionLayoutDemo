@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<MotionScene xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:motion="http://schemas.android.com/apk/res-auto">
+
+    <!--
+        平移
+    -->
+    <Transition
+        motion:constraintSetStart="@layout/layout_left"
+        motion:constraintSetEnd="@layout/layout_right">
+
+        <!--
+            匹配用户的输入事件控制转换
+
+            touchAnchorId： 需要跟踪的对象
+            touchAnchorSide： 跟踪手指的一侧（right / left / top / bottom）
+            dragDirection： 跟踪手指运动的方向 ( dragRight / dragLeft / dragUp / dragDown 将决定进度值的变化0-1)
+        -->
+        <OnSwipe
+            motion:touchAnchorId="@+id/button"
+            motion:touchAnchorSide="right"
+            motion:dragDirection="dragRight"/>
+    </Transition>
+</MotionScene>

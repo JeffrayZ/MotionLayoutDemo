@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="utf-8"?>
+    <!--
+        自包含的 MotionScene
+    -->
+<MotionScene xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:motion="http://schemas.android.com/apk/res-auto">
+
+    <!--
+        平移
+    -->
+    <Transition
+        motion:constraintSetEnd="@+id/end"
+        motion:constraintSetStart="@+id/start"
+        motion:duration="1000">
+        <!--
+            匹配用户的输入事件控制转换
+
+            touchAnchorId： 需要跟踪的对象
+            touchAnchorSide： 跟踪手指的一侧（right / left / top / bottom）
+            dragDirection： 跟踪手指运动的方向 ( dragRight / dragLeft / dragUp / dragDown 将决定进度值的变化0-1)
+        -->
+        <OnSwipe
+            motion:dragDirection="dragRight"
+            motion:touchAnchorId="@+id/image1"
+            motion:touchAnchorSide="right" />
+
+        <OnClick
+            motion:clickAction="transitionToEnd"
+            motion:targetId="@+id/image2" />
+    </Transition>
+
+    <ConstraintSet android:id="@+id/start">
+        <Constraint
+            android:id="@+id/image1"
+            android:layout_width="64dp"
+            android:layout_height="64dp"
+            android:layout_marginStart="8dp"
+            motion:layout_constraintBottom_toTopOf="@id/image2"
+            motion:layout_constraintStart_toStartOf="parent"
+            motion:layout_constraintTop_toTopOf="parent">
+            <!--
+                ImageFilterView 还提供了其他的属性：
+
+                saturation : 0 = grayscale, 1 = original, 2 = hyper saturated
+                contrast : 1 = unchanged, 0 = gray, 2 = high contrast
+                warmth : 1 = neutral, 2 = warm (red tint), 0.5 = cold (blue tint)
+                crossfade (with app:altSrc)
+            -->
+
+            <CustomAttribute
+                motion:attributeName="crossfade"
+                motion:customFloatValue="0">
+
+            </CustomAttribute>
+        </Constraint>
+        <Constraint android:id="@id/image2">
+            <Layout
+                android:layout_width="64dp"
+                android:layout_height="64dp"
+                android:layout_marginStart="8dp"
+                motion:layout_constraintStart_toStartOf="@id/image1"
+                motion:layout_constraintTop_toBottomOf="@id/image1"
+                motion:layout_constraintBottom_toBottomOf="parent">
+            </Layout>
+            <CustomAttribute
+                motion:attributeName="saturation"
+                motion:customFloatValue="1"></CustomAttribute>
+        </Constraint>
+    </ConstraintSet>
+
+    <ConstraintSet android:id="@+id/end">
+        <Constraint
+            android:id="@+id/image1"
+            android:layout_width="64dp"
+            android:layout_height="64dp"
+            android:layout_marginEnd="8dp"
+            motion:layout_constraintBottom_toTopOf="@id/image2"
+            motion:layout_constraintEnd_toEndOf="parent"
+            motion:layout_constraintTop_toTopOf="parent">
+            <CustomAttribute
+                motion:attributeName="crossfade"
+                motion:customFloatValue="1">
+
+            </CustomAttribute>
+        </Constraint>
+        <Constraint android:id="@id/image2">
+            <Layout
+                android:layout_width="64dp"
+                android:layout_height="64dp"
+                android:layout_marginStart="8dp"
+                motion:layout_constraintStart_toStartOf="@id/image1"
+                motion:layout_constraintTop_toBottomOf="@id/image1"
+                motion:layout_constraintBottom_toBottomOf="parent">
+            </Layout>
+            <CustomAttribute
+                motion:attributeName="saturation"
+                motion:customFloatValue="0"></CustomAttribute>
+        </Constraint>
+    </ConstraintSet>
+</MotionScene>

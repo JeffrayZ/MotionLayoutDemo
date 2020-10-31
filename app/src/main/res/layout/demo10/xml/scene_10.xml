@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="utf-8"?>
+<MotionScene xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <Transition
+        app:constraintSetEnd="@+id/end"
+        app:constraintSetStart="@+id/start"
+        app:duration="3200"
+        app:motionInterpolator="bounce">
+        <KeyFrameSet>
+            <KeyAttribute
+                android:alpha="0.7"
+                android:scaleX="1.5"
+                android:scaleY="1.5"
+                app:framePosition="20"
+                app:motionTarget="@+id/loading_ball" />
+            <KeyAttribute
+                android:alpha="1"
+                android:scaleX="1"
+                android:scaleY="1"
+                app:framePosition="35"
+                app:motionTarget="@+id/loading_ball" />
+            <KeyAttribute
+                android:alpha="0.7"
+                android:scaleX="1.5"
+                android:scaleY="1.5"
+                app:framePosition="50"
+                app:motionTarget="@+id/loading_ball" />
+            <KeyAttribute
+                android:alpha="1"
+                android:scaleX="1"
+                android:scaleY="1"
+                app:framePosition="65"
+                app:motionTarget="@+id/loading_ball" />
+            <KeyAttribute
+                android:alpha="0.7"
+                android:scaleX="1.5"
+                android:scaleY="1.5"
+                app:framePosition="80"
+                app:motionTarget="@+id/loading_ball" />
+            <KeyAttribute
+                android:alpha="1"
+                android:scaleX="1"
+                android:scaleY="1"
+                app:framePosition="95"
+                app:motionTarget="@+id/loading_ball" />
+        </KeyFrameSet>
+        <OnClick
+            app:clickAction="toggle"
+            app:targetId="@+id/loading_ball" />
+    </Transition>
+    <ConstraintSet android:id="@+id/start">
+        <Constraint
+            android:id="@id/loading_ball"
+            android:layout_width="32dp"
+            android:layout_height="32dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.15"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.5">
+            <CustomAttribute
+                app:attributeName="colorFilter"
+                app:customColorValue="@android:color/holo_blue_light" />
+        </Constraint>
+    </ConstraintSet>
+
+    <ConstraintSet android:id="@+id/end">
+        <Constraint
+            android:id="@+id/loading_ball"
+            android:layout_width="32dp"
+            android:layout_height="32dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.85"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.5">
+            <CustomAttribute
+                app:attributeName="colorFilter"
+                app:customColorValue="@color/design_default_color_primary_dark" />
+        </Constraint>
+    </ConstraintSet>
+</MotionScene>
+

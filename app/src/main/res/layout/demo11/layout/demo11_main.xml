@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8"?>
+    <!--
+        app:layoutDescription=”reference” 指定 MotionScene XML 文件
+        app:applyMotionScene=”boolean” 是否应用 MotionScene [default=true]
+        app:showPaths=”boolean” 是否显示路径 [default=false]. 记得在发布版本中关闭
+        app:progress=”float” 指定转换的进度 [0-1]
+        app:currentState=”reference” 指定一个 ConstraintSet
+    -->
+<androidx.constraintlayout.motion.widget.MotionLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/motionLayout"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    app:layoutDescription="@xml/scene_11"
+    app:showPaths="true">
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/button"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"/>
+</androidx.constraintlayout.motion.widget.MotionLayout>

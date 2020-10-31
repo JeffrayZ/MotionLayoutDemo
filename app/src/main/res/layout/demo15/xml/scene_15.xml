@@ -1,0 +1,104 @@
+<?xml version="1.0" encoding="utf-8"?><!--
+    自包含的 MotionScene
+-->
+<MotionScene xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:motion="http://schemas.android.com/apk/res-auto">
+
+    <!--
+        平移
+    -->
+    <Transition
+        motion:constraintSetEnd="@+id/end"
+        motion:constraintSetStart="@+id/start">
+        <KeyFrameSet>
+            <!--
+                KeyPosition 位置关键帧
+                percentY 设置偏移量
+                motion:percentY="0.25"  中间位置向上凸起
+                motion:percentY="0.5"   对面位置水平
+                motion:percentY="0.75"  中间位置向下凸起
+             -->
+            <KeyPosition
+                motion:framePosition="25"
+                motion:keyPositionType="pathRelative"
+                motion:motionTarget="@+id/view"
+                motion:percentY="-0.25"></KeyPosition>
+            <KeyPosition
+                motion:framePosition="50"
+                motion:keyPositionType="pathRelative"
+                motion:motionTarget="@+id/view"
+                motion:percentY="0.25"></KeyPosition>
+            <KeyPosition
+                motion:framePosition="75"
+                motion:keyPositionType="pathRelative"
+                motion:motionTarget="@+id/view"
+                motion:percentY="-0.25"></KeyPosition>
+
+            <!-- KeyAttribute 属性关键帧 -->
+            <!-- 前半段的动画效果：逆时针旋转一圈，同时放大一倍 -->
+            <KeyAttribute
+                android:rotation="-360"
+                android:scaleX="2"
+                android:scaleY="2"
+                motion:framePosition="50"
+                motion:motionTarget="@id/view"></KeyAttribute>
+
+            <!-- 后半段的动画效果：逆时针旋转一圈，同时变回原样 -->
+            <KeyAttribute
+                android:rotation="-720"
+                android:scaleX="1"
+                android:scaleY="1"
+                motion:framePosition="100"
+                motion:motionTarget="@id/view"></KeyAttribute>
+
+            <!-- 延迟动画——0-85过程中将透明度一直维持在0.0 -->
+            <KeyAttribute
+                android:alpha="0.0"
+                motion:framePosition="85"
+                motion:motionTarget="@id/tvDesc"></KeyAttribute>
+
+            <KeyAttribute
+                android:alpha="1.0"
+                motion:framePosition="100"
+                motion:motionTarget="@id/tvDesc"></KeyAttribute>
+        </KeyFrameSet>
+
+        <!--
+            匹配用户的输入事件控制转换
+
+            touchAnchorId： 需要跟踪的对象
+            touchAnchorSide： 跟踪手指的一侧（right / left / top / bottom）
+            dragDirection： 跟踪手指运动的方向 ( dragRight / dragLeft / dragUp / dragDown 将决定进度值的变化0-1)
+        -->
+        <OnSwipe
+            motion:dragDirection="dragRight"
+            motion:touchAnchorId="@+id/view"
+            motion:touchAnchorSide="bottom" />
+
+
+    </Transition>
+
+    <ConstraintSet android:id="@+id/start">
+        <Constraint
+            android:id="@+id/view">
+            <CustomAttribute
+                motion:attributeName="backgroundColor"
+                motion:customColorValue="#D81B60" />
+        </Constraint>
+    </ConstraintSet>
+
+    <ConstraintSet android:id="@+id/end">
+        <Constraint
+            android:id="@+id/view"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:layout_marginEnd="8dp"
+            motion:layout_constraintBottom_toBottomOf="parent"
+            motion:layout_constraintRight_toRightOf="parent"
+            motion:layout_constraintTop_toTopOf="parent">
+            <CustomAttribute
+                motion:attributeName="backgroundColor"
+                motion:customColorValue="#9999FF" />
+        </Constraint>
+    </ConstraintSet>
+</MotionScene>

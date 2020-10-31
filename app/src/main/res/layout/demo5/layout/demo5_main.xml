@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+    <!--
+        app:layoutDescription=”reference” 指定 MotionScene XML 文件
+        app:applyMotionScene=”boolean” 是否应用 MotionScene [default=true]
+        app:showPaths=”boolean” 是否显示路径 [default=false]. 记得在发布版本中关闭
+        app:progress=”float” 指定转换的进度 [0-1]
+        app:currentState=”reference” 指定一个 ConstraintSet
+    -->
+<androidx.constraintlayout.motion.widget.MotionLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/motionLayout"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    app:layoutDescription="@xml/scene_05"
+    tools:showPaths="true">
+
+    <androidx.constraintlayout.utils.widget.ImageFilterView
+        android:id="@+id/image1"
+        android:layout_width="64dp"
+        android:layout_height="64dp"
+        android:src="@drawable/icon_camera"
+        app:altSrc="@drawable/icon_homework" />
+    <androidx.constraintlayout.utils.widget.ImageFilterView
+        android:id="@+id/image2"
+        android:layout_width="64dp"
+        android:layout_height="64dp"
+        android:src="@drawable/icon_camera" />
+</androidx.constraintlayout.motion.widget.MotionLayout>

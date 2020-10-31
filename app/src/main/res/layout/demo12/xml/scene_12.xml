@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="utf-8"?>
+<MotionScene xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <Transition
+        app:constraintSetEnd="@+id/end"
+        app:constraintSetStart="@+id/start"
+        app:duration="5200"
+        app:motionInterpolator="easeInOut">
+        <KeyFrameSet>
+            <!--
+                wavePeriod 这个表示在当前场景位置下需要执行动画的波（周期）的数量。
+                waveOffset 表示当前控件需要变化的属性的偏移量，即 view properties 所对应的初始值或者基准值。
+                            例如，如果我们在动画执行的某个位置设置了 scaleX 为 0.3，而设置了 waveOffset 值为  1，
+                            那么，动画执行到该位置，
+                            控件的实际宽度会变为 1 + 0.3 = 1.3，也就是会扩大为 1.3 倍，而不是缩小为之前的 0.3 倍。
+                waveShape 这个属性比较好理解，即波的形状，常见的值有：sin、cos、sawtooth 等
+            -->
+            <KeyCycle
+                app:motionTarget="@+id/view"
+                app:framePosition="10"
+                android:rotationY="22"
+                app:wavePeriod="2"
+                app:waveShape="sin"
+                app:waveOffset="1"/>
+            <KeyCycle
+                app:motionTarget="@+id/view"
+                app:framePosition="30"
+                android:rotationX="15"
+                app:wavePeriod="1"
+                app:waveShape="sin"
+                app:waveOffset="0"/>
+            <KeyCycle
+                app:motionTarget="@+id/view"
+                app:framePosition="65"
+                android:rotationY="14"
+                app:wavePeriod="1"
+                app:waveShape="sin"
+                app:waveOffset="0"/>
+            <KeyCycle
+                app:motionTarget="@+id/view"
+                app:framePosition="92"
+                android:rotationY="0"
+                android:rotationX="2"
+                app:wavePeriod="0"
+                app:waveShape="sin"
+                app:waveOffset="0"/>
+
+        </KeyFrameSet>
+        <OnClick
+            app:clickAction="toggle"
+            app:targetId="@+id/view" />
+    </Transition>
+    <ConstraintSet android:id="@+id/start">
+        <Constraint
+            android:id="@id/view"
+            android:layout_width="80dp"
+            android:layout_height="80dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            android:background="@drawable/icon_homework">
+
+        </Constraint>
+    </ConstraintSet>
+
+    <ConstraintSet android:id="@+id/end">
+        <Constraint
+            android:id="@+id/view"
+            android:layout_width="80dp"
+            android:layout_height="80dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            android:background="@drawable/icon_homework">
+
+        </Constraint>
+    </ConstraintSet>
+</MotionScene>
+
